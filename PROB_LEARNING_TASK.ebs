@@ -1,0 +1,2600 @@
+'
+'
+'
+'	C:\My Experiments\RewMRI\04_SecondScannerTask\ABCD_2_fMRI_v011612.ebs
+'	Generated on: 3/4/2012	16:18:36
+'
+'
+'	This file generated with E-Studio interface.
+'	E-Prime Copyright © 2002 Psychology Software Tools.
+'	ALL RIGHTS RESERVED
+'
+'	Legal use of this experiment script requires a full E-Prime or Runtime License.
+'
+'
+'	Author:
+'		Wouter van den Bos
+'		woutervdbos@gmail.com
+' This work is licensed under the Creative Commons Attribution-ShareAlike 3.0 Unported License.
+' To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/3.0/.
+'
+'
+
+Option CStrings On
+Dim ebContext as Context
+
+
+'--------------------------------------------------------------------------
+' Class Declarations
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+'InitTextDisplayDefaults
+'--------------------------------------------------------------------------
+Sub InitTextDisplayDefaults(theTextDisplay As TextDisplay)
+
+	If theTextDisplay Is Nothing Then Exit Sub
+
+	theTextDisplay.X = "center"
+	theTextDisplay.Y = "center"
+	theTextDisplay.Width = "100%"
+	theTextDisplay.Height = "100%"
+	theTextDisplay.ForeColor = CColor("black")
+	theTextDisplay.BackColor = CColor("white")
+	theTextDisplay.BackStyle = "opaque"
+	theTextDisplay.BorderColor = CColor("black")
+	theTextDisplay.BorderWidth = CLng("0")
+	theTextDisplay.XAlign = "center"
+	theTextDisplay.YAlign = "center"
+	theTextDisplay.AlignHorizontal = "center"
+	theTextDisplay.AlignVertical = "center"
+	theTextDisplay.WordWrap = True
+	theTextDisplay.ClearAfter = CLogical("No")
+	theTextDisplay.FontName = "Courier New"
+	theTextDisplay.FontSize = "18"
+	theTextDisplay.FontBold = CLogical("Yes")
+	theTextDisplay.FontItalic = CLogical("No")
+	theTextDisplay.FontUnderline = CLogical("No")
+	theTextDisplay.FontStrikeout = CLogical("No")
+
+End Sub
+
+
+
+
+
+'--------------------------------------------------------------------------
+'InitSlideStateDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideStateDefaults(theSlideState As SlideState)
+
+	If theSlideState Is Nothing Then Exit Sub
+
+	theSlideState.X = "center"
+	theSlideState.Y = "center"
+	theSlideState.Width = "100%"
+	theSlideState.Height = "100%"
+	theSlideState.BackColor = CColor("white")
+	theSlideState.BackStyle = "opaque"
+	theSlideState.BorderColor = CColor("black")
+	theSlideState.BorderWidth = CLng("0")
+	theSlideState.XAlign = "center"
+	theSlideState.YAlign = "center"
+	theSlideState.ClearAfter = CLogical("No")
+	theSlideState.Enabled = CLogical("Yes")
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideVisualStimDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideVisualStimDefaults(theSlideVisualStim As SlideVisualStim)
+
+	If theSlideVisualStim Is Nothing Then Exit Sub
+
+	theSlideVisualStim.X = "center"
+	theSlideVisualStim.Y = "center"
+	theSlideVisualStim.Width = "25%"
+	theSlideVisualStim.Height = "25%"
+	theSlideVisualStim.ForeColor = CColor("black")
+	theSlideVisualStim.BackColor = CColor("white")
+	theSlideVisualStim.BackStyle = "opaque"
+	theSlideVisualStim.BorderColor = CColor("black")
+	theSlideVisualStim.BorderWidth = CLng("0")
+	theSlideVisualStim.XAlign = "center"
+	theSlideVisualStim.YAlign = "center"
+	theSlideVisualStim.AlignHorizontal = "center"
+	theSlideVisualStim.AlignVertical = "center"
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideTextDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideTextDefaults(theSlideText As SlideText)
+
+	If theSlideText Is Nothing Then Exit Sub
+
+	InitSlideVisualStimDefaults theSlideText
+
+	theSlideText.WordWrap = True
+	theSlideText.FontName = "Courier New"
+	theSlideText.FontSize = "18"
+	theSlideText.FontBold = CLogical("Yes")
+	theSlideText.FontItalic = CLogical("No")
+	theSlideText.FontUnderline = CLogical("No")
+	theSlideText.FontStrikeout = CLogical("No")
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideImageDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideImageDefaults(theSlideImage As SlideImage)
+
+	If theSlideImage Is Nothing Then Exit Sub
+
+	InitSlideVisualStimDefaults theSlideImage
+
+	theSlideImage.Stretch = CLogical("No")
+	theSlideImage.MirrorLeftRight = CLogical("No")
+	theSlideImage.MirrorUpDown = CLogical("No")
+	theSlideImage.UseSourceColorKey = CLogical("No")
+	theSlideImage.SourceColorKey = CColor("black")
+
+End Sub
+
+'--------------------------------------------------------------------------
+'InitSlideSoundBufferDefaults
+'--------------------------------------------------------------------------
+Sub InitSlideSoundBufferDefaults(theSoundBuffer As SoundBuffer)
+
+	If theSoundBuffer Is Nothing Then Exit Sub
+
+	theSoundBuffer.Loop = CLogical("No")
+	theSoundBuffer.StopAfter = CLogical("Yes")
+	theSoundBuffer.StartOffset = "0"
+	theSoundBuffer.StopOffset = "0"
+
+End Sub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'--------------------------------------------------------------------------
+' Instance Declarations
+'--------------------------------------------------------------------------
+Dim Display As DisplayDevice
+Dim Sound As SoundDevice
+Dim Keyboard As KeyboardDevice
+Dim Mouse As MouseDevice
+Dim ScannerTTL As PortDevice
+Dim ButtonBox As PortDevice
+Dim ButtonBoxSerial As SerialDevice
+Dim SessionProc As Procedure
+
+Dim ProcedureList As List
+
+Dim Welcome As Procedure
+
+Dim Practice As Procedure
+
+Dim Break As Procedure
+
+Dim Goodbye As Procedure
+
+Dim Welkom As TextDisplay
+Dim WelkomEchoClients As EchoClientCollection
+
+Dim PracticeList As List
+
+Dim PracticeProcedure As Procedure
+
+Dim PictureSlide As Slide
+Dim PictureSlideEchoClients As EchoClientCollection
+Dim PictureSlide_State As SlideState
+Dim PictureSlide_SlideImage As SlideImage
+
+Dim TakeBreak As TextDisplay
+Dim TakeBreakEchoClients As EchoClientCollection
+
+Dim BlankScreen As TextDisplay
+
+Dim Thanks As TextDisplay
+Dim ThanksEchoClients As EchoClientCollection
+
+Dim FeedBackSlide As Slide
+Dim FeedBackSlide_State As SlideState
+Dim FeedBackSlide_SlideImage As SlideImage
+
+Dim TextDisplay1 As TextDisplay
+
+Dim Practice2 As Procedure
+
+Dim PracticeList1 As List
+
+Dim PracticeProcedure2 As Procedure
+
+Dim Filler As Slide
+Dim Filler_State As SlideState
+
+Dim TextDisplay4 As TextDisplay
+Dim TextDisplay4EchoClients As EchoClientCollection
+
+Dim Baseline1 As TextDisplay
+
+Dim Baseline2 As TextDisplay
+
+Dim LastMessage As TextDisplay
+Dim LastMessageEchoClients As EchoClientCollection
+
+
+
+'--------------------------------------------------------------------------
+' Package Declare Script
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+' User Script
+'--------------------------------------------------------------------------
+Dim Trialcount as Long
+Dim ABcount as Long
+Dim CDcount as Long
+Dim EFcount as Long
+Dim BAcount as long
+Dim DCcount as long
+Dim FEcount as long
+Dim ACcount as long
+Dim CAcount as long
+Dim ADcount as long
+Dim DAcount as long
+Dim AEcount as long
+Dim EAcount as long
+Dim AFcount as long
+Dim FAcount as long
+Dim BCcount as long
+Dim CBcount as long
+Dim BDcount as long
+Dim DBcount as long
+Dim BEcount as long
+Dim EBcount as long
+Dim BFcount as long
+Dim FBcount as long
+Dim ABavg as integer
+Dim BAavg as integer
+Dim CDavg as integer
+Dim DCavg as integer
+Dim EFavg as integer
+Dim FEavg as integer
+Dim ACavg as integer
+Dim CAavg as integer
+Dim ADavg as integer
+Dim DAavg as integer
+Dim AEavg as integer
+Dim EAavg as integer
+Dim AFavg as integer
+Dim FAavg as integer
+Dim BCavg as integer
+Dim CBavg as integer
+Dim BDavg as integer
+Dim DBavg as integer
+Dim BEavg as integer
+Dim EBavg as integer
+Dim BFavg as integer
+Dim FBavg as integer
+Dim ABtrial as Integer
+Dim BAtrial as Integer
+Dim CDtrial as Integer
+Dim DCtrial as Integer
+Dim EFtrial as Integer
+Dim FEtrial as Integer
+Dim ACtrial as integer
+Dim CAtrial as integer
+Dim ADtrial as Integer
+Dim DAtrial as Integer
+Dim AEtrial as Integer
+Dim EAtrial as Integer
+Dim AFtrial as Integer
+Dim FAtrial as Integer
+Dim BCtrial as integer
+Dim CBtrial as integer
+Dim BDtrial as Integer
+Dim DBtrial as Integer
+Dim BEtrial as Integer
+Dim EBtrial as Integer
+Dim BFtrial as Integer
+Dim FBtrial as Integer
+
+
+Dim AB1count as Long
+Dim CD1count as Long
+Dim EF1count as Long
+Dim BA1count as long
+Dim DC1count as long
+Dim FE1count as long
+Dim AC1count as long
+Dim CA1count as long
+Dim AD1count as long
+Dim DA1count as long
+Dim AE1count as long
+Dim EA1count as long
+Dim AF1count as long
+Dim FA1count as long
+Dim BC1count as long
+Dim CB1count as long
+Dim BD1count as long
+Dim DB1count as long
+Dim BE1count as long
+Dim EB1count as long
+Dim BF1count as long
+Dim FB1count as long
+Dim AB1avg as integer
+Dim BA1avg as integer
+Dim CD1avg as integer
+Dim DC1avg as integer
+Dim EF1avg as integer
+Dim FE1avg as integer
+Dim AC1avg as integer
+Dim CA1avg as integer
+Dim AD1avg as integer
+Dim DA1avg as integer
+Dim AE1avg as integer
+Dim EA1avg as integer
+Dim AF1avg as integer
+Dim FA1avg as integer
+Dim BC1avg as integer
+Dim CB1avg as integer
+Dim BD1avg as integer
+Dim DB1avg as integer
+Dim BE1avg as integer
+Dim EB1avg as integer
+Dim BF1avg as integer
+Dim FB1avg as integer
+Dim AB1trial as Integer
+Dim BA1trial as Integer
+Dim CD1trial as Integer
+Dim DC1trial as Integer
+Dim EF1trial as Integer
+Dim FE1trial as Integer
+Dim AC1trial as integer
+Dim CA1trial as integer
+Dim AD1trial as Integer
+Dim DA1trial as Integer
+Dim AE1trial as Integer
+Dim EA1trial as Integer
+Dim AF1trial as Integer
+Dim FA1trial as Integer
+Dim BC1trial as integer
+Dim CB1trial as integer
+Dim BD1trial as Integer
+Dim DB1trial as Integer
+Dim BE1trial as Integer
+Dim EB1trial as Integer
+Dim BF1trial as Integer
+Dim FB1trial as Integer
+
+
+'--------------------------------------------------------------------------
+' Package Global Script
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+' Package Routines
+'--------------------------------------------------------------------------
+
+
+
+'--------------------------------------------------------------------------
+' Implementation
+'--------------------------------------------------------------------------
+Sub SessionProc_Run(c as Context)
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - PreScript BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+'counters
+Trialcount = 0
+ABavg = 0
+ABcount = 0
+ABtrial = 0
+BAcount = 0
+BAavg = 0
+BAtrial = 0
+CDcount = 0
+CDavg = 0
+CDtrial = 0
+DCcount = 0
+DCavg = 0
+DCtrial = 0
+EFcount = 0
+EFavg = 0
+EFtrial = 0
+FEcount = 0
+FEavg = 0
+FEtrial = 0 
+ACavg = 0
+ACcount = 0
+ACtrial = 0
+CAavg = 0
+CAcount = 0
+CAtrial = 0
+ADavg = 0
+ADcount = 0
+ADtrial = 0
+DAavg = 0
+DAcount = 0
+DAtrial = 0
+AEavg = 0
+AEcount = 0
+AEtrial = 0
+EAavg = 0
+EAcount = 0
+EAtrial = 0
+AFavg = 0
+AFcount = 0
+AFtrial = 0
+FAavg = 0
+FAcount = 0
+FAtrial = 0
+BCavg = 0
+BCcount = 0
+BCtrial = 0
+CBavg = 0
+CBcount = 0
+CBtrial = 0
+BDavg = 0
+BDcount = 0
+BDtrial = 0
+DBavg = 0
+DBcount = 0
+DBtrial = 0
+BEavg = 0
+BEcount = 0
+BEtrial = 0
+EBavg = 0
+EBcount = 0
+EBtrial = 0
+BFavg = 0
+BFcount = 0
+BFtrial = 0
+FBavg = 0
+FBcount = 0
+FBtrial = 0
+
+
+
+AB1avg = 0
+AB1count = 0
+AB1trial = 0
+BA1count = 0
+BA1avg = 0
+BA1trial = 0
+CD1count = 0
+CD1avg = 0
+CD1trial = 0
+DC1count = 0
+DC1avg = 0
+DC1trial = 0
+EF1count = 0
+EF1avg = 0
+EF1trial = 0
+FE1count = 0
+FE1avg = 0
+FE1trial = 0 
+AC1avg = 0
+AC1count = 0
+AC1trial = 0
+CA1avg = 0
+CA1count = 0
+CA1trial = 0
+AD1avg = 0
+AD1count = 0
+AD1trial = 0
+DA1avg = 0
+DA1count = 0
+DA1trial = 0
+AE1avg = 0
+AE1count = 0
+AE1trial = 0
+EA1avg = 0
+EA1count = 0
+EA1trial = 0
+AF1avg = 0
+AF1count = 0
+AF1trial = 0
+FA1avg = 0
+FA1count = 0
+FA1trial = 0
+BC1avg = 0
+BC1count = 0
+BC1trial = 0
+CB1avg = 0
+CB1count = 0
+CB1trial = 0
+BD1avg = 0
+BD1count = 0
+BD1trial = 0
+DB1avg = 0
+DB1count = 0
+DB1trial = 0
+BE1avg = 0
+BE1count = 0
+BE1trial = 0
+EB1avg = 0
+EB1count = 0
+EB1trial = 0
+BF1avg = 0
+BF1count = 0
+BF1trial = 0
+FB1avg = 0
+FB1count = 0
+FB1trial = 0
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - PreScript END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	ProcedureList.Run c
+
+	c.Log
+End Sub
+
+Sub Welcome_Run(c as Context)
+	
+	
+	Welkom.InputMasks.Reset
+	
+	WelkomEchoClients.RemoveAll
+	Welkom.InputMasks.Add Keyboard.CreateInputMask("5", "", CLng(Welkom.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	WelkomEchoClients.RemoveAll
+	Welkom.InputMasks.Add ScannerTTL.CreateInputMask("{ANY}", "", CLng(Welkom.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "")
+
+	
+	Welkom.Run
+	c.SetAttrib "Welkom.OnsetTime", Welkom.OnsetTime
+	c.SetAttrib "Welkom.Duration", Welkom.Duration
+	c.SetAttrib "Welkom.OffsetTime", Welkom.OffsetTime
+	c.SetAttrib "Welkom.RT", Welkom.RT
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ScannerStartTime BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	c.setAttrib "ScannnerStartTime", clock.read
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - ScannerStartTime END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	Baseline1.Run
+	c.SetAttrib "Baseline1.OnsetDelay", Baseline1.OnsetDelay
+	c.SetAttrib "Baseline1.OnsetTime", Baseline1.OnsetTime
+	c.SetAttrib "Baseline1.DurationError", Baseline1.DurationError
+	c.SetAttrib "Baseline1.OffsetTime", Baseline1.OffsetTime
+	c.SetAttrib "Baseline1.RTTime", Baseline1.RTTime
+	c.SetAttrib "Baseline1.ACC", Baseline1.ACC
+	c.SetAttrib "Baseline1.RT", Baseline1.RT
+	c.SetAttrib "Baseline1.RESP", Baseline1.RESP
+	c.SetAttrib "Baseline1.CRESP", Baseline1.CRESP
+	
+	c.SetAttrib "Welkom.OnsetTime", Welkom.OnsetTime
+	c.SetAttrib "Welkom.Duration", Welkom.Duration
+	c.SetAttrib "Welkom.OffsetTime", Welkom.OffsetTime
+	c.SetAttrib "Welkom.RT", Welkom.RT
+	
+	c.SetAttrib "Baseline1.OnsetDelay", Baseline1.OnsetDelay
+	c.SetAttrib "Baseline1.OnsetTime", Baseline1.OnsetTime
+	c.SetAttrib "Baseline1.DurationError", Baseline1.DurationError
+	c.SetAttrib "Baseline1.OffsetTime", Baseline1.OffsetTime
+	c.SetAttrib "Baseline1.RTTime", Baseline1.RTTime
+	c.SetAttrib "Baseline1.ACC", Baseline1.ACC
+	c.SetAttrib "Baseline1.RT", Baseline1.RT
+	c.SetAttrib "Baseline1.RESP", Baseline1.RESP
+	c.SetAttrib "Baseline1.CRESP", Baseline1.CRESP
+	
+
+	c.Log
+End Sub
+
+Sub Practice_Run(c as Context)
+	PracticeList.Run c
+
+	c.Log
+End Sub
+
+Sub Break_Run(c as Context)
+	
+	
+	TakeBreak.InputMasks.Reset
+	
+	TakeBreakEchoClients.RemoveAll
+	TakeBreak.InputMasks.Add Keyboard.CreateInputMask("{ENTER}", "", CLng(TakeBreak.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	TakeBreak.Run
+	c.SetAttrib "TakeBreak.OnsetDelay", TakeBreak.OnsetDelay
+	c.SetAttrib "TakeBreak.OnsetTime", TakeBreak.OnsetTime
+	c.SetAttrib "TakeBreak.DurationError", TakeBreak.DurationError
+	c.SetAttrib "TakeBreak.RTTime", TakeBreak.RTTime
+	c.SetAttrib "TakeBreak.ACC", TakeBreak.ACC
+	c.SetAttrib "TakeBreak.RT", TakeBreak.RT
+	c.SetAttrib "TakeBreak.RESP", TakeBreak.RESP
+	c.SetAttrib "TakeBreak.CRESP", TakeBreak.CRESP
+	
+	
+	
+	TextDisplay4.InputMasks.Reset
+	
+	TextDisplay4EchoClients.RemoveAll
+	TextDisplay4.InputMasks.Add Keyboard.CreateInputMask("5", "", CLng(TextDisplay4.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	TextDisplay4EchoClients.RemoveAll
+	TextDisplay4.InputMasks.Add ScannerTTL.CreateInputMask("{ANY}", "", CLng(TextDisplay4.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "")
+
+	
+	TextDisplay4.Run
+	c.SetAttrib "TextDisplay4.OnsetDelay", TextDisplay4.OnsetDelay
+	c.SetAttrib "TextDisplay4.OnsetTime", TextDisplay4.OnsetTime
+	c.SetAttrib "TextDisplay4.DurationError", TextDisplay4.DurationError
+	c.SetAttrib "TextDisplay4.OffsetTime", TextDisplay4.OffsetTime
+	c.SetAttrib "TextDisplay4.RTTime", TextDisplay4.RTTime
+	c.SetAttrib "TextDisplay4.ACC", TextDisplay4.ACC
+	c.SetAttrib "TextDisplay4.RT", TextDisplay4.RT
+	c.SetAttrib "TextDisplay4.RESP", TextDisplay4.RESP
+	c.SetAttrib "TextDisplay4.CRESP", TextDisplay4.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine4 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Trialcount = 0
+c.setAttrib "ScannnerStartTime", clock.read
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine4 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	Baseline2.Run
+	c.SetAttrib "Baseline2.OnsetDelay", Baseline2.OnsetDelay
+	c.SetAttrib "Baseline2.OnsetTime", Baseline2.OnsetTime
+	c.SetAttrib "Baseline2.DurationError", Baseline2.DurationError
+	c.SetAttrib "Baseline2.OffsetTime", Baseline2.OffsetTime
+	c.SetAttrib "Baseline2.RTTime", Baseline2.RTTime
+	c.SetAttrib "Baseline2.ACC", Baseline2.ACC
+	c.SetAttrib "Baseline2.RT", Baseline2.RT
+	c.SetAttrib "Baseline2.RESP", Baseline2.RESP
+	c.SetAttrib "Baseline2.CRESP", Baseline2.CRESP
+	
+	c.SetAttrib "TakeBreak.OnsetDelay", TakeBreak.OnsetDelay
+	c.SetAttrib "TakeBreak.OnsetTime", TakeBreak.OnsetTime
+	c.SetAttrib "TakeBreak.DurationError", TakeBreak.DurationError
+	c.SetAttrib "TakeBreak.RTTime", TakeBreak.RTTime
+	c.SetAttrib "TakeBreak.ACC", TakeBreak.ACC
+	c.SetAttrib "TakeBreak.RT", TakeBreak.RT
+	c.SetAttrib "TakeBreak.RESP", TakeBreak.RESP
+	c.SetAttrib "TakeBreak.CRESP", TakeBreak.CRESP
+	
+	c.SetAttrib "TextDisplay4.OnsetDelay", TextDisplay4.OnsetDelay
+	c.SetAttrib "TextDisplay4.OnsetTime", TextDisplay4.OnsetTime
+	c.SetAttrib "TextDisplay4.DurationError", TextDisplay4.DurationError
+	c.SetAttrib "TextDisplay4.OffsetTime", TextDisplay4.OffsetTime
+	c.SetAttrib "TextDisplay4.RTTime", TextDisplay4.RTTime
+	c.SetAttrib "TextDisplay4.ACC", TextDisplay4.ACC
+	c.SetAttrib "TextDisplay4.RT", TextDisplay4.RT
+	c.SetAttrib "TextDisplay4.RESP", TextDisplay4.RESP
+	c.SetAttrib "TextDisplay4.CRESP", TextDisplay4.CRESP
+	
+	c.SetAttrib "Baseline2.OnsetDelay", Baseline2.OnsetDelay
+	c.SetAttrib "Baseline2.OnsetTime", Baseline2.OnsetTime
+	c.SetAttrib "Baseline2.DurationError", Baseline2.DurationError
+	c.SetAttrib "Baseline2.OffsetTime", Baseline2.OffsetTime
+	c.SetAttrib "Baseline2.RTTime", Baseline2.RTTime
+	c.SetAttrib "Baseline2.ACC", Baseline2.ACC
+	c.SetAttrib "Baseline2.RT", Baseline2.RT
+	c.SetAttrib "Baseline2.RESP", Baseline2.RESP
+	c.SetAttrib "Baseline2.CRESP", Baseline2.CRESP
+	
+
+	c.Log
+End Sub
+
+Sub Goodbye_Run(c as Context)
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - Label1 BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Label1:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume Label1Resume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+Label1Resume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - Label1 END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	
+	
+	Thanks.InputMasks.Reset
+	
+	ThanksEchoClients.RemoveAll
+	Thanks.InputMasks.Add Keyboard.CreateInputMask("{SPACE}", "", CLng(Thanks.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	ThanksEchoClients.RemoveAll
+	Thanks.InputMasks.Add ScannerTTL.CreateInputMask("{ANY}", "", CLng(Thanks.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "")
+
+	
+	Thanks.Run
+	c.SetAttrib "Thanks.OnsetDelay", Thanks.OnsetDelay
+	c.SetAttrib "Thanks.OnsetTime", Thanks.OnsetTime
+	c.SetAttrib "Thanks.DurationError", Thanks.DurationError
+	c.SetAttrib "Thanks.RTTime", Thanks.RTTime
+	c.SetAttrib "Thanks.ACC", Thanks.ACC
+	c.SetAttrib "Thanks.RT", Thanks.RT
+	c.SetAttrib "Thanks.RESP", Thanks.RESP
+	c.SetAttrib "Thanks.CRESP", Thanks.CRESP
+	
+	
+	
+	LastMessage.InputMasks.Reset
+	
+	LastMessageEchoClients.RemoveAll
+	LastMessage.InputMasks.Add Keyboard.CreateInputMask("{ANY}", "", CLng(LastMessage.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	LastMessage.Run
+	c.SetAttrib "LastMessage.OnsetDelay", LastMessage.OnsetDelay
+	c.SetAttrib "LastMessage.OnsetTime", LastMessage.OnsetTime
+	c.SetAttrib "LastMessage.DurationError", LastMessage.DurationError
+	c.SetAttrib "LastMessage.RTTime", LastMessage.RTTime
+	c.SetAttrib "LastMessage.ACC", LastMessage.ACC
+	c.SetAttrib "LastMessage.RT", LastMessage.RT
+	c.SetAttrib "LastMessage.RESP", LastMessage.RESP
+	c.SetAttrib "LastMessage.CRESP", LastMessage.CRESP
+	
+	c.SetAttrib "Thanks.OnsetDelay", Thanks.OnsetDelay
+	c.SetAttrib "Thanks.OnsetTime", Thanks.OnsetTime
+	c.SetAttrib "Thanks.DurationError", Thanks.DurationError
+	c.SetAttrib "Thanks.RTTime", Thanks.RTTime
+	c.SetAttrib "Thanks.ACC", Thanks.ACC
+	c.SetAttrib "Thanks.RT", Thanks.RT
+	c.SetAttrib "Thanks.RESP", Thanks.RESP
+	c.SetAttrib "Thanks.CRESP", Thanks.CRESP
+	
+	c.SetAttrib "LastMessage.OnsetDelay", LastMessage.OnsetDelay
+	c.SetAttrib "LastMessage.OnsetTime", LastMessage.OnsetTime
+	c.SetAttrib "LastMessage.DurationError", LastMessage.DurationError
+	c.SetAttrib "LastMessage.RTTime", LastMessage.RTTime
+	c.SetAttrib "LastMessage.ACC", LastMessage.ACC
+	c.SetAttrib "LastMessage.RT", LastMessage.RT
+	c.SetAttrib "LastMessage.RESP", LastMessage.RESP
+	c.SetAttrib "LastMessage.CRESP", LastMessage.CRESP
+	
+
+	c.Log
+End Sub
+
+Sub PracticeProcedure_Run(c as Context)
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCounter BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Trialcount = Trialcount + 1
+
+if c.getAttrib ("picture1")="ab" Then 
+ABtrial = ABtrial + 1
+
+else if c.getAttrib ("picture1")="cd" Then 
+CDtrial = CDtrial + 1
+
+else if c.getAttrib ("picture1")="ba" Then
+BAtrial = BAtrial + 1
+
+else if c.getAttrib ("picture1")="dc" Then
+DCtrial = DCtrial + 1
+
+
+
+end if
+end if
+end if
+end if
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCounter END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	BlankScreen.Duration = CLng(c.GetAttrib("Jitter"))
+	BlankScreen.Run
+	c.SetAttrib "BlankScreen.OnsetDelay", BlankScreen.OnsetDelay
+	c.SetAttrib "BlankScreen.OnsetTime", BlankScreen.OnsetTime
+	c.SetAttrib "BlankScreen.DurationError", BlankScreen.DurationError
+	c.SetAttrib "BlankScreen.OffsetTime", BlankScreen.OffsetTime
+	c.SetAttrib "BlankScreen.RTTime", BlankScreen.RTTime
+	c.SetAttrib "BlankScreen.ACC", BlankScreen.ACC
+	c.SetAttrib "BlankScreen.RT", BlankScreen.RT
+	c.SetAttrib "BlankScreen.RESP", BlankScreen.RESP
+	c.SetAttrib "BlankScreen.CRESP", BlankScreen.CRESP
+	
+	
+	
+	Select Case PictureSlide.ActiveState
+		Case "Default"
+
+
+			Set PictureSlide_SlideImage = CSlideImage(PictureSlide.States.Item("Default").Objects(1))
+			PictureSlide_SlideImage.Filename = c.GetAttrib("picture1") &_ 
+				".bmp"
+			PictureSlide_SlideImage.Load
+			Set PictureSlide_SlideImage = Nothing
+	End Select
+
+	
+	PictureSlide.InputMasks.Reset
+	
+	PictureSlideEchoClients.RemoveAll
+	PictureSlide.InputMasks.Add Keyboard.CreateInputMask("14", "", CLng(PictureSlide.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	PictureSlide.Run
+	
+	c.SetAttrib "PictureSlide.OnsetDelay", PictureSlide.OnsetDelay
+	c.SetAttrib "PictureSlide.OnsetTime", PictureSlide.OnsetTime
+	c.SetAttrib "PictureSlide.DurationError", PictureSlide.DurationError
+	c.SetAttrib "PictureSlide.Duration", PictureSlide.Duration
+	c.SetAttrib "PictureSlide.OffsetTime", PictureSlide.OffsetTime
+	c.SetAttrib "PictureSlide.RTTime", PictureSlide.RTTime
+	c.SetAttrib "PictureSlide.ACC", PictureSlide.ACC
+	c.SetAttrib "PictureSlide.RT", PictureSlide.RT
+	c.SetAttrib "PictureSlide.RESP", PictureSlide.RESP
+	c.SetAttrib "PictureSlide.CRESP", PictureSlide.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - StatusDescription BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	if c.getAttrib ("picture1") = "ab" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+	    ABcount = ABcount + 100
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d" 
+		Case "1"
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c"	
+		Case else 
+		goto MISS
+		End Select
+ABavg = ABcount/ABtrial
+c.setAttrib "ABavg", ABavg
+goto FB
+end if
+
+if c.getAttrib ("picture1") = "ba" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c" 
+		Case "1"
+		BAcount = BAcount + 100
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d"	
+		Case else 
+		goto MISS
+		End Select
+BAavg = BAcount/BAtrial
+c.setAttrib "BAavg", BAavg
+goto FB
+end if
+
+if c.getAttrib ("picture1") = "cd" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+	    CDcount = CDcount + 100
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d" 
+		Case "1"
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c"	
+		Case else 
+		goto MISS
+		End Select
+CDavg = CDcount/CDtrial
+c.setAttrib "CDavg", CDavg
+goto FB
+end if
+
+if c.getAttrib ("picture1") = "dc" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c" 
+		Case "1"
+		DCcount = DCcount + 100
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d"	
+		Case else 
+		goto MISS
+		End Select
+DCavg = DCcount/DCtrial
+c.setAttrib "DCavg", DCavg
+goto FB
+end if
+
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - StatusDescription END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - FB BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+FB:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume FBResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+FBResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - FB END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	
+	
+	Select Case FeedBackSlide.ActiveState
+		Case "Default"
+
+
+			Set FeedBackSlide_SlideImage = CSlideImage(FeedBackSlide.States.Item("Default").Objects(1))
+			FeedBackSlide_SlideImage.Filename = c.GetAttrib("fb") &_ 
+				".bmp"
+			FeedBackSlide_SlideImage.Load
+			Set FeedBackSlide_SlideImage = Nothing
+	End Select
+
+	FeedBackSlide.Run
+	
+	c.SetAttrib "FeedBackSlide.OnsetDelay", FeedBackSlide.OnsetDelay
+	c.SetAttrib "FeedBackSlide.OnsetTime", FeedBackSlide.OnsetTime
+	c.SetAttrib "FeedBackSlide.DurationError", FeedBackSlide.DurationError
+	c.SetAttrib "FeedBackSlide.OffsetTime", FeedBackSlide.OffsetTime
+	c.SetAttrib "FeedBackSlide.RTTime", FeedBackSlide.RTTime
+	c.SetAttrib "FeedBackSlide.ACC", FeedBackSlide.ACC
+	c.SetAttrib "FeedBackSlide.RT", FeedBackSlide.RT
+	c.SetAttrib "FeedBackSlide.RESP", FeedBackSlide.RESP
+	c.SetAttrib "FeedBackSlide.CRESP", FeedBackSlide.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine2 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Filler.Duration = 2575 - c.getAttrib ("PictureSlide.RT") 
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine2 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	
+	Select Case Filler.ActiveState
+		Case "Default"
+
+	End Select
+
+	Filler.Run
+	
+	c.SetAttrib "Filler.OnsetDelay", Filler.OnsetDelay
+	c.SetAttrib "Filler.OnsetTime", Filler.OnsetTime
+	c.SetAttrib "Filler.DurationError", Filler.DurationError
+	c.SetAttrib "Filler.OffsetTime", Filler.OffsetTime
+	c.SetAttrib "Filler.RTTime", Filler.RTTime
+	c.SetAttrib "Filler.ACC", Filler.ACC
+	c.SetAttrib "Filler.RT", Filler.RT
+	c.SetAttrib "Filler.RESP", Filler.RESP
+	c.SetAttrib "Filler.CRESP", Filler.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine1 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	goto TrialCounting
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine1 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - MISS BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+MISS:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume MISSResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+MISSResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - MISS END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	
+	TextDisplay1.Run
+	c.SetAttrib "TextDisplay1.OnsetDelay", TextDisplay1.OnsetDelay
+	c.SetAttrib "TextDisplay1.OnsetTime", TextDisplay1.OnsetTime
+	c.SetAttrib "TextDisplay1.DurationError", TextDisplay1.DurationError
+	c.SetAttrib "TextDisplay1.OffsetTime", TextDisplay1.OffsetTime
+	c.SetAttrib "TextDisplay1.RTTime", TextDisplay1.RTTime
+	c.SetAttrib "TextDisplay1.ACC", TextDisplay1.ACC
+	c.SetAttrib "TextDisplay1.RT", TextDisplay1.RT
+	c.SetAttrib "TextDisplay1.RESP", TextDisplay1.RESP
+	c.SetAttrib "TextDisplay1.CRESP", TextDisplay1.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine3 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	c.setAttrib "Miss", "1"
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine3 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - TrialCounting BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+TrialCounting:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume TrialCountingResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+TrialCountingResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - TrialCounting END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCountTotal BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Select Case Trialcount 
+Case 20
+c.setAttrib "Aavg", (ABavg+BAavg)/2
+c.setAttrib "Cavg", (CDavg+DCavg)/2
+Case 40
+c.setAttrib "Aavg", (ABavg+BAavg)/2
+c.setAttrib "Cavg", (CDavg+DCavg)/2
+Case 60
+c.setAttrib "Aavg", (ABavg+BAavg)/2
+c.setAttrib "Cavg", (CDavg+DCavg)/2
+Case 80
+c.setAttrib "Aavg", (ABavg+BAavg)/2
+c.setAttrib "Cavg", (CDavg+DCavg)/2
+Case 100
+c.setAttrib "Aavg", (ABavg+BAavg)/2
+c.setAttrib "Cavg", (CDavg+DCavg)/2
+End Select
+goto Ending
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCountTotal END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - Ending BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Ending:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume EndingResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+EndingResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - Ending END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	c.SetAttrib "BlankScreen.OnsetDelay", BlankScreen.OnsetDelay
+	c.SetAttrib "BlankScreen.OnsetTime", BlankScreen.OnsetTime
+	c.SetAttrib "BlankScreen.DurationError", BlankScreen.DurationError
+	c.SetAttrib "BlankScreen.OffsetTime", BlankScreen.OffsetTime
+	c.SetAttrib "BlankScreen.RTTime", BlankScreen.RTTime
+	c.SetAttrib "BlankScreen.ACC", BlankScreen.ACC
+	c.SetAttrib "BlankScreen.RT", BlankScreen.RT
+	c.SetAttrib "BlankScreen.RESP", BlankScreen.RESP
+	c.SetAttrib "BlankScreen.CRESP", BlankScreen.CRESP
+	
+	c.SetAttrib "PictureSlide.OnsetDelay", PictureSlide.OnsetDelay
+	c.SetAttrib "PictureSlide.OnsetTime", PictureSlide.OnsetTime
+	c.SetAttrib "PictureSlide.DurationError", PictureSlide.DurationError
+	c.SetAttrib "PictureSlide.Duration", PictureSlide.Duration
+	c.SetAttrib "PictureSlide.OffsetTime", PictureSlide.OffsetTime
+	c.SetAttrib "PictureSlide.RTTime", PictureSlide.RTTime
+	c.SetAttrib "PictureSlide.ACC", PictureSlide.ACC
+	c.SetAttrib "PictureSlide.RT", PictureSlide.RT
+	c.SetAttrib "PictureSlide.RESP", PictureSlide.RESP
+	c.SetAttrib "PictureSlide.CRESP", PictureSlide.CRESP
+	
+	c.SetAttrib "FeedBackSlide.OnsetDelay", FeedBackSlide.OnsetDelay
+	c.SetAttrib "FeedBackSlide.OnsetTime", FeedBackSlide.OnsetTime
+	c.SetAttrib "FeedBackSlide.DurationError", FeedBackSlide.DurationError
+	c.SetAttrib "FeedBackSlide.OffsetTime", FeedBackSlide.OffsetTime
+	c.SetAttrib "FeedBackSlide.RTTime", FeedBackSlide.RTTime
+	c.SetAttrib "FeedBackSlide.ACC", FeedBackSlide.ACC
+	c.SetAttrib "FeedBackSlide.RT", FeedBackSlide.RT
+	c.SetAttrib "FeedBackSlide.RESP", FeedBackSlide.RESP
+	c.SetAttrib "FeedBackSlide.CRESP", FeedBackSlide.CRESP
+	
+	c.SetAttrib "Filler.OnsetDelay", Filler.OnsetDelay
+	c.SetAttrib "Filler.OnsetTime", Filler.OnsetTime
+	c.SetAttrib "Filler.DurationError", Filler.DurationError
+	c.SetAttrib "Filler.OffsetTime", Filler.OffsetTime
+	c.SetAttrib "Filler.RTTime", Filler.RTTime
+	c.SetAttrib "Filler.ACC", Filler.ACC
+	c.SetAttrib "Filler.RT", Filler.RT
+	c.SetAttrib "Filler.RESP", Filler.RESP
+	c.SetAttrib "Filler.CRESP", Filler.CRESP
+	
+	c.SetAttrib "TextDisplay1.OnsetDelay", TextDisplay1.OnsetDelay
+	c.SetAttrib "TextDisplay1.OnsetTime", TextDisplay1.OnsetTime
+	c.SetAttrib "TextDisplay1.DurationError", TextDisplay1.DurationError
+	c.SetAttrib "TextDisplay1.OffsetTime", TextDisplay1.OffsetTime
+	c.SetAttrib "TextDisplay1.RTTime", TextDisplay1.RTTime
+	c.SetAttrib "TextDisplay1.ACC", TextDisplay1.ACC
+	c.SetAttrib "TextDisplay1.RT", TextDisplay1.RT
+	c.SetAttrib "TextDisplay1.RESP", TextDisplay1.RESP
+	c.SetAttrib "TextDisplay1.CRESP", TextDisplay1.CRESP
+	
+
+	c.Log
+End Sub
+
+
+
+
+
+Sub Practice2_Run(c as Context)
+	PracticeList1.Run c
+
+	c.Log
+End Sub
+
+Sub PracticeProcedure2_Run(c as Context)
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCounter1 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Trialcount = Trialcount + 1
+
+if c.getAttrib ("picture1")="ab1" Then 
+AB1trial = AB1trial + 1
+
+else if c.getAttrib ("picture1")="cd1" Then 
+CD1trial = CD1trial + 1
+
+else if c.getAttrib ("picture1")="ba1" Then
+BA1trial = BA1trial + 1
+
+else if c.getAttrib ("picture1")="dc1" Then
+DC1trial = DC1trial + 1
+
+
+
+end if
+end if
+end if
+end if
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCounter1 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	BlankScreen.Duration = CLng(c.GetAttrib("Jitter"))
+	BlankScreen.Run
+	c.SetAttrib "BlankScreen.OnsetDelay", BlankScreen.OnsetDelay
+	c.SetAttrib "BlankScreen.OnsetTime", BlankScreen.OnsetTime
+	c.SetAttrib "BlankScreen.DurationError", BlankScreen.DurationError
+	c.SetAttrib "BlankScreen.OffsetTime", BlankScreen.OffsetTime
+	c.SetAttrib "BlankScreen.RTTime", BlankScreen.RTTime
+	c.SetAttrib "BlankScreen.ACC", BlankScreen.ACC
+	c.SetAttrib "BlankScreen.RT", BlankScreen.RT
+	c.SetAttrib "BlankScreen.RESP", BlankScreen.RESP
+	c.SetAttrib "BlankScreen.CRESP", BlankScreen.CRESP
+	
+	
+	
+	Select Case PictureSlide.ActiveState
+		Case "Default"
+
+
+			Set PictureSlide_SlideImage = CSlideImage(PictureSlide.States.Item("Default").Objects(1))
+			PictureSlide_SlideImage.Filename = c.GetAttrib("picture1") &_ 
+				".bmp"
+			PictureSlide_SlideImage.Load
+			Set PictureSlide_SlideImage = Nothing
+	End Select
+
+	
+	PictureSlide.InputMasks.Reset
+	
+	PictureSlideEchoClients.RemoveAll
+	PictureSlide.InputMasks.Add Keyboard.CreateInputMask("14", "", CLng(PictureSlide.Duration), CLng("1"), ebEndResponseActionTerminate, CLogical("Yes"), "", "", "ResponseMode:All ProcessBackspace:Yes")
+
+	
+	PictureSlide.Run
+	
+	c.SetAttrib "PictureSlide.OnsetDelay", PictureSlide.OnsetDelay
+	c.SetAttrib "PictureSlide.OnsetTime", PictureSlide.OnsetTime
+	c.SetAttrib "PictureSlide.DurationError", PictureSlide.DurationError
+	c.SetAttrib "PictureSlide.Duration", PictureSlide.Duration
+	c.SetAttrib "PictureSlide.OffsetTime", PictureSlide.OffsetTime
+	c.SetAttrib "PictureSlide.RTTime", PictureSlide.RTTime
+	c.SetAttrib "PictureSlide.ACC", PictureSlide.ACC
+	c.SetAttrib "PictureSlide.RT", PictureSlide.RT
+	c.SetAttrib "PictureSlide.RESP", PictureSlide.RESP
+	c.SetAttrib "PictureSlide.CRESP", PictureSlide.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - StatusDescription1 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	if c.getAttrib ("picture1") = "ab1" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+	    AB1count = AB1count + 100
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d" 
+		Case "1"
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c"	
+		Case else 
+		goto MISS
+		End Select
+AB1avg = AB1count/AB1trial
+c.setAttrib "AB1avg", AB1avg
+goto FB
+end if
+
+if c.getAttrib ("picture1") = "ba1" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c" 
+		Case "1"
+		BA1count = BA1count + 100
+		if c.getAttrib("AB")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d"	
+		Case else 
+		goto MISS
+		End Select
+BA1avg = BA1count/BA1trial
+c.setAttrib "BA1avg", BA1avg
+goto FB
+end if
+
+if c.getAttrib ("picture1") = "cd1" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+	    CD1count = CD1count + 100
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d" 
+		Case "1"
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c"	
+		Case else 
+		goto MISS
+		End Select
+CD1avg = CD1count/CD1trial
+c.setAttrib "CD1avg", CD1avg
+goto FB
+end if
+
+if c.getAttrib ("picture1") = "dc1" Then
+	Select Case PictureSlide.RESP
+		Case "4" 
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "d" else c.setAttrib "fb", "c" 
+		Case "1"
+		DC1count = DC1count + 100
+		if c.getAttrib("CD")=1 Then c.setAttrib "fb", "c" else c.setAttrib "fb", "d"	
+		Case else 
+		goto MISS
+		End Select
+DC1avg = DC1count/DC1trial
+c.setAttrib "DC1avg", DC1avg
+goto FB
+end if
+
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - StatusDescription1 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - FB BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+FB:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume FBResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+FBResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - FB END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	
+	
+	Select Case FeedBackSlide.ActiveState
+		Case "Default"
+
+
+			Set FeedBackSlide_SlideImage = CSlideImage(FeedBackSlide.States.Item("Default").Objects(1))
+			FeedBackSlide_SlideImage.Filename = c.GetAttrib("fb") &_ 
+				".bmp"
+			FeedBackSlide_SlideImage.Load
+			Set FeedBackSlide_SlideImage = Nothing
+	End Select
+
+	FeedBackSlide.Run
+	
+	c.SetAttrib "FeedBackSlide.OnsetDelay", FeedBackSlide.OnsetDelay
+	c.SetAttrib "FeedBackSlide.OnsetTime", FeedBackSlide.OnsetTime
+	c.SetAttrib "FeedBackSlide.DurationError", FeedBackSlide.DurationError
+	c.SetAttrib "FeedBackSlide.OffsetTime", FeedBackSlide.OffsetTime
+	c.SetAttrib "FeedBackSlide.RTTime", FeedBackSlide.RTTime
+	c.SetAttrib "FeedBackSlide.ACC", FeedBackSlide.ACC
+	c.SetAttrib "FeedBackSlide.RT", FeedBackSlide.RT
+	c.SetAttrib "FeedBackSlide.RESP", FeedBackSlide.RESP
+	c.SetAttrib "FeedBackSlide.CRESP", FeedBackSlide.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine2 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Filler.Duration = 2575 - c.getAttrib ("PictureSlide.RT") 
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine2 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	
+	Select Case Filler.ActiveState
+		Case "Default"
+
+	End Select
+
+	Filler.Run
+	
+	c.SetAttrib "Filler.OnsetDelay", Filler.OnsetDelay
+	c.SetAttrib "Filler.OnsetTime", Filler.OnsetTime
+	c.SetAttrib "Filler.DurationError", Filler.DurationError
+	c.SetAttrib "Filler.OffsetTime", Filler.OffsetTime
+	c.SetAttrib "Filler.RTTime", Filler.RTTime
+	c.SetAttrib "Filler.ACC", Filler.ACC
+	c.SetAttrib "Filler.RT", Filler.RT
+	c.SetAttrib "Filler.RESP", Filler.RESP
+	c.SetAttrib "Filler.CRESP", Filler.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine1 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	goto TrialCounting
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine1 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - MISS BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+MISS:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume MISSResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+MISSResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - MISS END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	
+	TextDisplay1.Run
+	c.SetAttrib "TextDisplay1.OnsetDelay", TextDisplay1.OnsetDelay
+	c.SetAttrib "TextDisplay1.OnsetTime", TextDisplay1.OnsetTime
+	c.SetAttrib "TextDisplay1.DurationError", TextDisplay1.DurationError
+	c.SetAttrib "TextDisplay1.OffsetTime", TextDisplay1.OffsetTime
+	c.SetAttrib "TextDisplay1.RTTime", TextDisplay1.RTTime
+	c.SetAttrib "TextDisplay1.ACC", TextDisplay1.ACC
+	c.SetAttrib "TextDisplay1.RT", TextDisplay1.RT
+	c.SetAttrib "TextDisplay1.RESP", TextDisplay1.RESP
+	c.SetAttrib "TextDisplay1.CRESP", TextDisplay1.CRESP
+	
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine3 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	c.setAttrib "Miss", "1"
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - InLine3 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - TrialCounting BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+TrialCounting:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume TrialCountingResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+TrialCountingResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - TrialCounting END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCountTotal1 BEGIN
+	'''''''''''''''''''''''''''''''''''''''''''''
+	Select Case Trialcount 
+Case 20
+c.setAttrib "A1avg", (AB1avg+BA1avg)/2
+c.setAttrib "C1avg", (CD1avg+DC1avg)/2
+Case 40
+c.setAttrib "A1avg", (AB1avg+BA1avg)/2
+c.setAttrib "C1avg", (CD1avg+DC1avg)/2
+Case 60
+c.setAttrib "A1avg", (AB1avg+BA1avg)/2
+c.setAttrib "C1avg", (CD1avg+DC1avg)/2
+Case 80
+c.setAttrib "A1avg", (AB1avg+BA1avg)/2
+c.setAttrib "C1avg", (CD1avg+DC1avg)/2
+Case 100
+c.setAttrib "A1avg", (AB1avg+BA1avg)/2
+c.setAttrib "C1avg", (CD1avg+DC1avg)/2
+End Select
+goto Ending
+	'''''''''''''''''''''''''''''''''''''''''''''
+	' InLine - TrialCountTotal1 END
+	'''''''''''''''''''''''''''''''''''''''''''''
+	
+	
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - Ending BEGIN
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+Ending:
+	If Err.Number = ebInputAccepted Then
+		Err.Clear
+		Resume EndingResume
+	ElseIf Err.Number <> 0 Then
+		'NOTE: If you receive a runtime error here, it
+		' is because a runtime error other than ebInputAccepted
+		' was thrown (ebInputAccepted for catching input masks that jump).
+		'You are encouraged to either handle the error so that
+		' it is not thrown in the future or will have to set up
+		' your own error handler, which will also need to take
+		' into account for any input masks that jump.
+		'
+		'Raise the error so the default error handler will show the message
+		Err.Raise Err.Number
+	End If
+
+EndingResume:
+
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+	'	Label - Ending END
+	''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+	c.SetAttrib "BlankScreen.OnsetDelay", BlankScreen.OnsetDelay
+	c.SetAttrib "BlankScreen.OnsetTime", BlankScreen.OnsetTime
+	c.SetAttrib "BlankScreen.DurationError", BlankScreen.DurationError
+	c.SetAttrib "BlankScreen.OffsetTime", BlankScreen.OffsetTime
+	c.SetAttrib "BlankScreen.RTTime", BlankScreen.RTTime
+	c.SetAttrib "BlankScreen.ACC", BlankScreen.ACC
+	c.SetAttrib "BlankScreen.RT", BlankScreen.RT
+	c.SetAttrib "BlankScreen.RESP", BlankScreen.RESP
+	c.SetAttrib "BlankScreen.CRESP", BlankScreen.CRESP
+	
+	c.SetAttrib "PictureSlide.OnsetDelay", PictureSlide.OnsetDelay
+	c.SetAttrib "PictureSlide.OnsetTime", PictureSlide.OnsetTime
+	c.SetAttrib "PictureSlide.DurationError", PictureSlide.DurationError
+	c.SetAttrib "PictureSlide.Duration", PictureSlide.Duration
+	c.SetAttrib "PictureSlide.OffsetTime", PictureSlide.OffsetTime
+	c.SetAttrib "PictureSlide.RTTime", PictureSlide.RTTime
+	c.SetAttrib "PictureSlide.ACC", PictureSlide.ACC
+	c.SetAttrib "PictureSlide.RT", PictureSlide.RT
+	c.SetAttrib "PictureSlide.RESP", PictureSlide.RESP
+	c.SetAttrib "PictureSlide.CRESP", PictureSlide.CRESP
+	
+	c.SetAttrib "FeedBackSlide.OnsetDelay", FeedBackSlide.OnsetDelay
+	c.SetAttrib "FeedBackSlide.OnsetTime", FeedBackSlide.OnsetTime
+	c.SetAttrib "FeedBackSlide.DurationError", FeedBackSlide.DurationError
+	c.SetAttrib "FeedBackSlide.OffsetTime", FeedBackSlide.OffsetTime
+	c.SetAttrib "FeedBackSlide.RTTime", FeedBackSlide.RTTime
+	c.SetAttrib "FeedBackSlide.ACC", FeedBackSlide.ACC
+	c.SetAttrib "FeedBackSlide.RT", FeedBackSlide.RT
+	c.SetAttrib "FeedBackSlide.RESP", FeedBackSlide.RESP
+	c.SetAttrib "FeedBackSlide.CRESP", FeedBackSlide.CRESP
+	
+	c.SetAttrib "Filler.OnsetDelay", Filler.OnsetDelay
+	c.SetAttrib "Filler.OnsetTime", Filler.OnsetTime
+	c.SetAttrib "Filler.DurationError", Filler.DurationError
+	c.SetAttrib "Filler.OffsetTime", Filler.OffsetTime
+	c.SetAttrib "Filler.RTTime", Filler.RTTime
+	c.SetAttrib "Filler.ACC", Filler.ACC
+	c.SetAttrib "Filler.RT", Filler.RT
+	c.SetAttrib "Filler.RESP", Filler.RESP
+	c.SetAttrib "Filler.CRESP", Filler.CRESP
+	
+	c.SetAttrib "TextDisplay1.OnsetDelay", TextDisplay1.OnsetDelay
+	c.SetAttrib "TextDisplay1.OnsetTime", TextDisplay1.OnsetTime
+	c.SetAttrib "TextDisplay1.DurationError", TextDisplay1.DurationError
+	c.SetAttrib "TextDisplay1.OffsetTime", TextDisplay1.OffsetTime
+	c.SetAttrib "TextDisplay1.RTTime", TextDisplay1.RTTime
+	c.SetAttrib "TextDisplay1.ACC", TextDisplay1.ACC
+	c.SetAttrib "TextDisplay1.RT", TextDisplay1.RT
+	c.SetAttrib "TextDisplay1.RESP", TextDisplay1.RESP
+	c.SetAttrib "TextDisplay1.CRESP", TextDisplay1.CRESP
+	
+
+	c.Log
+End Sub
+
+
+
+
+
+'--------------------------------------------------------------------------
+' InitDevices
+'
+'--------------------------------------------------------------------------
+Sub InitDevices(c As Context)
+
+
+
+	SetOSThreadPriority 3
+
+
+	Set Display = New DisplayDevice
+	Display.Name = "Display"
+
+	Dim DisplayDisplayDeviceInfo As DisplayDeviceInfo
+	DisplayDisplayDeviceInfo.XRes = 800
+	DisplayDisplayDeviceInfo.YRes = 600
+	DisplayDisplayDeviceInfo.ColorDepth = 16
+	DisplayDisplayDeviceInfo.RefreshRate = 0
+	DisplayDisplayDeviceInfo.NumPages = 0
+
+	Display.Open DisplayDisplayDeviceInfo
+	c.SetAttrib "Display.RefreshRate", Format$(Display.CalculatedRefreshRate, "0.000")
+
+	Set Sound = New SoundDevice
+	Sound.Name = "Sound"
+
+	Dim SoundSoundOutDeviceInfo As SoundDeviceInfo
+	SoundSoundOutDeviceInfo.Channels = 2
+	SoundSoundOutDeviceInfo.SamplesPerSecond = 22050
+	SoundSoundOutDeviceInfo.BitsPerSample = 16
+	
+	Set Keyboard = New KeyboardDevice
+	Keyboard.Name = "Keyboard"
+
+	Dim KeyboardKeyboardDeviceInfo as KeyboardDeviceInfo
+	KeyboardKeyboardDeviceInfo.CollectionMode = ebPressesOnly
+	KeyboardKeyboardDeviceInfo.CapsLock = ebCapsLockOff
+	KeyboardKeyboardDeviceInfo.NumLock = ebNumLockOn
+	Keyboard.Open KeyboardKeyboardDeviceInfo
+	
+	Set Mouse = New MouseDevice
+	Mouse.Name = "Mouse"
+
+	Dim MouseMouseDeviceInfo as MouseDeviceInfo
+	MouseMouseDeviceInfo.OpenMode = ebMouseOpenModeDirect
+	MouseMouseDeviceInfo.CollectionMode = ebPressesOnly
+	MouseMouseDeviceInfo.ShowCursor = False
+	Mouse.Open MouseMouseDeviceInfo
+
+	Set ScannerTTL = New PortDevice
+	ScannerTTL.Name = "ScannerTTL"
+	Dim ScannerTTLPortDeviceInfo As PortDeviceInfo
+	ScannerTTLPortDeviceInfo.CollectionMode = ebPressesOnly
+	ScannerTTLPortDeviceInfo.Address = &H379
+	ScannerTTLPortDeviceInfo.Size = 8
+	ScannerTTLPortDeviceInfo.Invert = CLogical("No")
+	ScannerTTLPortDeviceInfo.Mask = -1
+	ScannerTTL.Open ScannerTTLPortDeviceInfo
+
+	Set ButtonBox = New PortDevice
+	ButtonBox.Name = "ButtonBox"
+	Dim ButtonBoxPortDeviceInfo As PortDeviceInfo
+	ButtonBoxPortDeviceInfo.CollectionMode = ebPressesOnly
+	ButtonBoxPortDeviceInfo.Address = &H3F8
+	ButtonBoxPortDeviceInfo.Size = 8
+	ButtonBoxPortDeviceInfo.Invert = CLogical("No")
+	ButtonBoxPortDeviceInfo.Mask = -1
+ButtonBoxPortDeviceInfo.EmulateDeviceName = "Keyboard"
+		ButtonBox.Open ButtonBoxPortDeviceInfo
+
+	Dim ButtonBoxSerialSerialDeviceInfo As SerialDeviceInfo
+	ButtonBoxSerialSerialDeviceInfo.CommPort = 1
+	ButtonBoxSerialSerialDeviceInfo.BaudRate = 57600
+	ButtonBoxSerialSerialDeviceInfo.DataBits = 8
+	ButtonBoxSerialSerialDeviceInfo.Parity = ebParityNo
+	ButtonBoxSerialSerialDeviceInfo.StopBits = ebStopBits1_0
+
+	Set ButtonBoxSerial = New SerialDevice
+		ButtonBoxSerial.Name = "ButtonBoxSerial"
+ButtonBoxSerial.Open ButtonBoxSerialSerialDeviceInfo
+
+
+
+	SetOSThreadPriority 0
+
+End Sub
+
+
+
+'--------------------------------------------------------------------------
+' InitObjects
+'
+'--------------------------------------------------------------------------
+Sub InitObjects(c As Context)
+
+	Set SessionProc = New Procedure
+	SessionProc.Name = "SessionProc"
+	SessionProc.Tag = ""
+	SessionProc.Subroutine = "SessionProc_Run"
+
+	Set ProcedureList = New List
+	ProcedureList.Name = "ProcedureList"
+	ProcedureList.Tag = ""
+
+	'Initialization for ProcedureList
+	
+	Set ProcedureList.Order = New SequentialOrder
+	Set ProcedureList.Deletion = NoDeletion
+	ProcedureList.ResetEveryRun = False
+
+	' Create the column headings
+	ProcedureList.Filename = ""
+	ProcedureList.LoadMethod = ebLoadMethodEmbedded
+
+	ProcedureList.Load
+
+	Set ProcedureList.TerminateCondition = Cycles(1)
+	Set ProcedureList.ResetCondition = Samples(5)
+	ProcedureList.Reset
+	
+	Set Welcome = New Procedure
+	Welcome.Name = "Welcome"
+	Welcome.Tag = ""
+	Welcome.Subroutine = "Welcome_Run"
+
+	Set Practice = New Procedure
+	Practice.Name = "Practice"
+	Practice.Tag = ""
+	Practice.Subroutine = "Practice_Run"
+
+	Set Break = New Procedure
+	Break.Name = "Break"
+	Break.Tag = ""
+	Break.Subroutine = "Break_Run"
+
+	Set Goodbye = New Procedure
+	Goodbye.Name = "Goodbye"
+	Goodbye.Tag = ""
+	Goodbye.Subroutine = "Goodbye_Run"
+
+	Set Welkom = New TextDisplay
+	Welkom.Name = "Welkom"
+	Welkom.Tag = ""
+
+	Set WelkomEchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults Welkom
+
+	Welkom.Text = "\n \nFor this game, you want to pick \nthe picture that will win you the \nmost points. With more points, \nyou get a better prize.\n\nThis game is a " &_ 
+				"bit tougher, \nso try your best!\n\nRemember- press the left button \nto pick the left picture, \nor press the right button \nto pick the right pictur" &_ 
+				"e"
+	Welkom.Duration = CLng("-1")
+	Welkom.TimingMode = ebTimingModeEvent
+	Welkom.PreRelease = Val("0")
+
+	Welkom.OnsetSync = 1
+	Welkom.OffsetSync = 0
+
+	Set PracticeList = New List
+	PracticeList.Name = "PracticeList"
+	PracticeList.Tag = ""
+
+	'Initialization for PracticeList
+	
+	Set PracticeList.Order = New SequentialOrder
+	Set PracticeList.Deletion = NoDeletion
+	PracticeList.ResetEveryRun = False
+
+	' Create the column headings
+	PracticeList.AddAttrib "CorrectResponse"
+	PracticeList.AddAttrib "picture1"
+	PracticeList.AddAttrib "Jitter"
+	PracticeList.AddAttrib "AB"
+	PracticeList.AddAttrib "CD"
+	PracticeList.Filename = ""
+	PracticeList.LoadMethod = ebLoadMethodEmbedded
+
+	PracticeList.Load
+
+	Set PracticeList.TerminateCondition = Cycles(1)
+	Set PracticeList.ResetCondition = Samples(100)
+	PracticeList.Reset
+	
+	Set PracticeProcedure = New Procedure
+	PracticeProcedure.Name = "PracticeProcedure"
+	PracticeProcedure.Tag = ""
+	PracticeProcedure.Subroutine = "PracticeProcedure_Run"
+
+	Set PictureSlide = New Slide
+	PictureSlide.Name = "PictureSlide"
+	PictureSlide.Tag = ""
+
+	Set PictureSlideEchoClients = New EchoClientCollection
+	PictureSlide.Duration = CLng("2575")
+	PictureSlide.TimingMode = ebTimingModeEvent
+	PictureSlide.PreRelease = Val("0")
+
+	PictureSlide.OnsetSync = 1
+	PictureSlide.OffsetSync = 0
+
+	Set PictureSlide_State = New SlideState
+	PictureSlide_State.Name = "Default"
+
+	InitSlideStateDefaults PictureSlide_State
+
+
+	PictureSlide.States.Add PictureSlide_State, "Default"
+
+
+	Set PictureSlide_SlideImage = New SlideImage
+	PictureSlide_SlideImage.Name = "Image1"
+
+	InitSlideImageDefaults PictureSlide_SlideImage
+
+	PictureSlide_SlideImage.Width = "100%"
+	PictureSlide_SlideImage.Height = "100%"
+	PictureSlide.States.Item("Default").Objects.Add PictureSlide_SlideImage, "Image1"
+	PictureSlide.ActiveState = "Default"
+
+	Set TakeBreak = New TextDisplay
+	TakeBreak.Name = "TakeBreak"
+	TakeBreak.Tag = ""
+
+	Set TakeBreakEchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults TakeBreak
+
+	TakeBreak.Text = "\nGood job! We are half\nway done this game!\n\nStay still and \nnow let's finish \nthis part \nof the game.\n"
+	TakeBreak.Duration = CLng("-1")
+	TakeBreak.TimingMode = ebTimingModeEvent
+	TakeBreak.PreRelease = Val("0")
+
+	TakeBreak.OnsetSync = 1
+	TakeBreak.OffsetSync = 0
+
+	Set BlankScreen = New TextDisplay
+	BlankScreen.Name = "BlankScreen"
+	BlankScreen.Tag = ""
+
+	InitTextDisplayDefaults BlankScreen
+
+	BlankScreen.Text = "+"
+	BlankScreen.TimingMode = ebTimingModeEvent
+	BlankScreen.PreRelease = Val("0")
+
+	BlankScreen.OnsetSync = 1
+	BlankScreen.OffsetSync = 0
+
+	Set Thanks = New TextDisplay
+	Thanks.Name = "Thanks"
+	Thanks.Tag = ""
+
+	Set ThanksEchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults Thanks
+
+	Thanks.Text = "\nOK, almost done!\n\nGood job! \n\nKeep still!\n"
+	Thanks.Duration = CLng("-1")
+	Thanks.TimingMode = ebTimingModeEvent
+	Thanks.PreRelease = Val("0")
+
+	Thanks.OnsetSync = 1
+	Thanks.OffsetSync = 0
+
+	Set FeedBackSlide = New Slide
+	FeedBackSlide.Name = "FeedBackSlide"
+	FeedBackSlide.Tag = ""
+	FeedBackSlide.Duration = CLng("1000")
+	FeedBackSlide.TimingMode = ebTimingModeEvent
+	FeedBackSlide.PreRelease = Val("0")
+
+	FeedBackSlide.OnsetSync = 1
+	FeedBackSlide.OffsetSync = 0
+
+	Set FeedBackSlide_State = New SlideState
+	FeedBackSlide_State.Name = "Default"
+
+	InitSlideStateDefaults FeedBackSlide_State
+
+
+	FeedBackSlide.States.Add FeedBackSlide_State, "Default"
+
+
+	Set FeedBackSlide_SlideImage = New SlideImage
+	FeedBackSlide_SlideImage.Name = "Image1"
+
+	InitSlideImageDefaults FeedBackSlide_SlideImage
+
+	FeedBackSlide_SlideImage.Width = "100%"
+	FeedBackSlide_SlideImage.Height = "100%"
+	FeedBackSlide.States.Item("Default").Objects.Add FeedBackSlide_SlideImage, "Image1"
+	FeedBackSlide.ActiveState = "Default"
+
+	Set TextDisplay1 = New TextDisplay
+	TextDisplay1.Name = "TextDisplay1"
+	TextDisplay1.Tag = ""
+
+	InitTextDisplayDefaults TextDisplay1
+
+	TextDisplay1.Text = "Too Slow !"
+	TextDisplay1.Duration = CLng("1000")
+	TextDisplay1.TimingMode = ebTimingModeEvent
+	TextDisplay1.PreRelease = Val("0")
+
+	TextDisplay1.OnsetSync = 1
+	TextDisplay1.OffsetSync = 0
+
+	Set Practice2 = New Procedure
+	Practice2.Name = "Practice2"
+	Practice2.Tag = ""
+	Practice2.Subroutine = "Practice2_Run"
+
+	Set PracticeList1 = New List
+	PracticeList1.Name = "PracticeList1"
+	PracticeList1.Tag = ""
+
+	'Initialization for PracticeList1
+	
+	Set PracticeList1.Order = New SequentialOrder
+	Set PracticeList1.Deletion = NoDeletion
+	PracticeList1.ResetEveryRun = False
+
+	' Create the column headings
+	PracticeList1.AddAttrib "CorrectResponse"
+	PracticeList1.AddAttrib "picture1"
+	PracticeList1.AddAttrib "Jitter"
+	PracticeList1.AddAttrib "AB"
+	PracticeList1.AddAttrib "CD"
+	PracticeList1.Filename = ""
+	PracticeList1.LoadMethod = ebLoadMethodEmbedded
+
+	PracticeList1.Load
+
+	Set PracticeList1.TerminateCondition = Cycles(1)
+	Set PracticeList1.ResetCondition = Samples(100)
+	PracticeList1.Reset
+	
+	Set PracticeProcedure2 = New Procedure
+	PracticeProcedure2.Name = "PracticeProcedure2"
+	PracticeProcedure2.Tag = ""
+	PracticeProcedure2.Subroutine = "PracticeProcedure2_Run"
+
+	Set Filler = New Slide
+	Filler.Name = "Filler"
+	Filler.Tag = ""
+	Filler.Duration = CLng("4000")
+	Filler.TimingMode = ebTimingModeEvent
+	Filler.PreRelease = Val("0")
+
+	Filler.OnsetSync = 1
+	Filler.OffsetSync = 0
+
+	Set Filler_State = New SlideState
+	Filler_State.Name = "Default"
+
+	InitSlideStateDefaults Filler_State
+
+
+	Filler.States.Add Filler_State, "Default"
+
+	Filler.ActiveState = "Default"
+
+	Set TextDisplay4 = New TextDisplay
+	TextDisplay4.Name = "TextDisplay4"
+	TextDisplay4.Tag = ""
+
+	Set TextDisplay4EchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults TextDisplay4
+
+	TextDisplay4.Text = "\n\nWait a moment for the scanner..."
+	TextDisplay4.Duration = CLng("-1")
+	TextDisplay4.TimingMode = ebTimingModeEvent
+	TextDisplay4.PreRelease = Val("0")
+
+	TextDisplay4.OnsetSync = 1
+	TextDisplay4.OffsetSync = 0
+
+	Set Baseline1 = New TextDisplay
+	Baseline1.Name = "Baseline1"
+	Baseline1.Tag = ""
+
+	InitTextDisplayDefaults Baseline1
+
+	Baseline1.Text = "+"
+	Baseline1.Duration = CLng("25000")
+	Baseline1.TimingMode = ebTimingModeEvent
+	Baseline1.PreRelease = Val("0")
+
+	Baseline1.OnsetSync = 1
+	Baseline1.OffsetSync = 0
+
+	Set Baseline2 = New TextDisplay
+	Baseline2.Name = "Baseline2"
+	Baseline2.Tag = ""
+
+	InitTextDisplayDefaults Baseline2
+
+	Baseline2.Text = "+"
+	Baseline2.Duration = CLng("25000")
+	Baseline2.TimingMode = ebTimingModeEvent
+	Baseline2.PreRelease = Val("0")
+
+	Baseline2.OnsetSync = 1
+	Baseline2.OffsetSync = 0
+
+	Set LastMessage = New TextDisplay
+	LastMessage.Name = "LastMessage"
+	LastMessage.Tag = ""
+
+	Set LastMessageEchoClients = New EchoClientCollection
+
+	InitTextDisplayDefaults LastMessage
+
+	LastMessage.Text = "Only a few more \nscans to go!\n\nYou are almost done!\n\nRemember to keep still!"
+	LastMessage.Duration = CLng("-1")
+	LastMessage.TimingMode = ebTimingModeEvent
+	LastMessage.PreRelease = Val("0")
+
+	LastMessage.OnsetSync = 1
+	LastMessage.OffsetSync = 0
+
+
+End Sub
+
+
+'--------------------------------------------------------------------------
+' InitPackages
+'
+'--------------------------------------------------------------------------
+Sub InitPackages(c As Context)
+
+End Sub
+
+
+
+'--------------------------------------------------------------------------
+'--------------------------------------------------------------------------
+' UnInitDevices
+'--------------------------------------------------------------------------
+Sub UnInitDevices()
+	Display.Close
+	Set Display = Nothing
+
+	Keyboard.Close
+	Set Keyboard = Nothing
+
+	Mouse.Close
+	Set Mouse = Nothing
+
+
+	ScannerTTL.Close
+	
+	ButtonBox.Close
+	
+	'Close the SerialDevice
+	ButtonBoxSerial.Close
+	Set ButtonBoxSerial = Nothing
+End Sub
+
+
+'--------------------------------------------------------------------------
+'--------------------------------------------------------------------------
+' UnInitPackages
+'--------------------------------------------------------------------------
+Sub UnInitPackages()
+End Sub
+
+
+'--------------------------------------------------------------------------
+' UnInitObjects
+'
+'--------------------------------------------------------------------------
+Sub UnInitObjects()
+
+	Set SessionProc = Nothing
+
+	Set ProcedureList = Nothing
+
+	Set Welcome = Nothing
+
+	Set Practice = Nothing
+
+	Set Break = Nothing
+
+	Set Goodbye = Nothing
+
+	Set Welkom = Nothing
+
+	Set WelkomEchoClients = Nothing
+
+	Set PracticeList = Nothing
+
+	Set PracticeProcedure = Nothing
+
+	Set PictureSlide = Nothing
+
+	Set PictureSlideEchoClients = Nothing
+
+	Set TakeBreak = Nothing
+
+	Set TakeBreakEchoClients = Nothing
+
+	Set BlankScreen = Nothing
+
+	Set Thanks = Nothing
+
+	Set ThanksEchoClients = Nothing
+
+	Set FeedBackSlide = Nothing
+
+	Set TextDisplay1 = Nothing
+
+	Set Practice2 = Nothing
+
+	Set PracticeList1 = Nothing
+
+	Set PracticeProcedure2 = Nothing
+
+	Set Filler = Nothing
+
+	Set TextDisplay4 = Nothing
+
+	Set TextDisplay4EchoClients = Nothing
+
+	Set Baseline1 = Nothing
+
+	Set Baseline2 = Nothing
+
+	Set LastMessage = Nothing
+
+	Set LastMessageEchoClients = Nothing
+
+
+End Sub
+
+
+'--------------------------------------------------------------------------
+' Main
+'
+'--------------------------------------------------------------------------
+Sub Main()
+
+	CreateDefaultPort
+
+	' Create and initialize the default context, data file,
+	' and provide global access to the context.
+	Dim c As Context
+	Set c = New Context
+	Set c.DataFile = New DataFile
+	c.PushNewFrame
+	Set ebContext = c
+
+	' Set the log level names
+	c.SetLogLevelName 1, "Session"
+	c.SetLogLevelName 2, "Block"
+	c.SetLogLevelName 3, "Trial"
+	c.SetLogLevelName 4, "SubTrial"
+	c.SetLogLevelName 5, "LogLevel5"
+	c.SetLogLevelName 6, "LogLevel6"
+	c.SetLogLevelName 7, "LogLevel7"
+	c.SetLogLevelName 8, "LogLevel8"
+	c.SetLogLevelName 9, "LogLevel9"
+	c.SetLogLevelName 10, "LogLevel10"
+
+	' Set standard logging items
+	ebContext.SetAttrib "Experiment", "ABCD_2_fMRI_v011612"
+	ebContext.SetAttrib "SessionDate", Date$
+	ebContext.SetAttrib "SessionTime", Time$
+	ebContext.SetAttrib "RandomSeed", PRNG.GetSeed()
+
+	If Basic.OS = ebWin32 Then
+		WinActivate "E-Run Experiment Window"
+	End If
+
+	' Get the StartupInfo
+	' Set default for GroupNumber
+	c.SetAttrib "Group", "1"
+
+
+	' Set the defaults for all of the StartupInfo
+	c.SetAttrib "Subject", "1"
+	c.SetAttrib "Session", "1"
+	c.SetAttrib "Age", "0"
+
+	Dim vAnswer As Variant
+StartupInfo_Begin:
+
+StartupInfoPrompt_Subject:
+	vAnswer = AskBox("Please enter the Subject Number (1-32767, 0=No Data Logging):", c.GetAttrib("Subject"))
+	If Not IsEmpty(vAnswer) then
+		If Not IsNumeric(vAnswer) then
+			MsgBox "Please enter an integer value"
+			GoTo StartupInfoPrompt_Subject
+		ElseIf CLng(vAnswer) < 0 Then
+			MsgBox "The value for Subject must not be less than 0"
+			GoTo StartupInfoPrompt_Subject
+		ElseIf CLng(vAnswer) > 32767 Then
+			MsgBox "The value for Subject must be not be greater than 32767"
+			GoTo StartupInfoPrompt_Subject
+		End If
+	Else
+		GoTo ExperimentAbort
+	End if
+
+	c.SetAttrib "Subject", CStr(vAnswer)
+
+StartupInfoPrompt_Session:
+	vAnswer = AskBox("Please enter the Session Number (1-32767):", c.GetAttrib("Session"))
+	If Not IsEmpty(vAnswer) then
+		If Not IsNumeric(vAnswer) then
+			MsgBox "Please enter an integer value"
+			GoTo StartupInfoPrompt_Session
+		ElseIf CLng(vAnswer) < 1 Then
+			MsgBox "The value for Session must not be less than 1"
+			GoTo StartupInfoPrompt_Session
+		ElseIf CLng(vAnswer) > 32767 Then
+			MsgBox "The value for Session must be not be greater than 32767"
+			GoTo StartupInfoPrompt_Session
+		End If
+	Else
+		GoTo ExperimentAbort
+	End if
+
+	c.SetAttrib "Session", CStr(vAnswer)
+
+StartupInfoPrompt_Age:
+	vAnswer = AskBox("Please enter Subject's Age (0-150):", c.GetAttrib("Age"))
+	If Not IsEmpty(vAnswer) then
+		If Not IsNumeric(vAnswer) then
+			MsgBox "Please enter an integer value"
+			GoTo StartupInfoPrompt_Age
+		ElseIf CLng(vAnswer) < 0 Then
+			MsgBox "The value for Age must not be less than 0"
+			GoTo StartupInfoPrompt_Age
+		ElseIf CLng(vAnswer) > 150 Then
+			MsgBox "The value for Age must be not be greater than 150"
+			GoTo StartupInfoPrompt_Age
+		End If
+	Else
+		GoTo ExperimentAbort
+	End if
+
+	c.SetAttrib "Age", CStr(vAnswer)
+
+	' Display the summary
+	Dim strSummary As String
+	strSummary = "Subject:    " & c.GetAttrib("Subject") & "\n"
+	strSummary = strSummary & "Session:    " & c.GetAttrib("Session") & "\n"
+	strSummary = strSummary & "Age:    " & c.GetAttrib("Age") & "\n"
+	strSummary = strSummary & "\nContinue with the above startup info?"
+
+	Dim nSummaryAnswer As Integer
+	nSummaryAnswer = MsgBox(strSummary, ebYesNoCancel + ebQuestion, "Summary of Startup Info")
+	If nSummaryAnswer = ebNo Then
+		GoTo StartupInfo_Begin
+	ElseIf nSummaryAnswer = ebCancel Then
+		GoTo ExperimentAbort
+	End If
+
+
+	' Set the default Data Filename
+	c.DataFile.Filename = CStr(c.GetAttrib("Experiment")) & "-" & CStr(c.GetAttrib("Subject")) & "-" & CStr(c.GetAttrib("Session")) & ".txt"
+
+	' If we are logging data, then prompt to overwrite the data file if it exists
+	If CLng(c.GetAttrib("Subject")) <> 0 Then
+		If FileExists(c.DataFile.Filename) Then
+			If ebYes <> MsgBox("WARNING: The data file and/or recovery file already exists:\nFILE: " & c.DataFile.Filename & "\n\nDo you want to overwrite?", ebYesNo + ebQuestion) Then
+				GoTo ExperimentAbort
+			End If
+		End If
+	End If
+
+	' Initialize all system devices, packages, and objects
+	InitDevices c
+	InitPackages c
+	InitObjects c
+
+	' If we are logging data, then open the datafile
+	If CLng(c.GetAttrib("Subject")) <> 0 Then
+		c.DataFile.Open
+		c.LogHeader
+	End If
+
+	' Start the running of the Experiment
+	SessionProc.Run c
+
+	' Clean up the context and close the datafile
+	If CLng(c.GetAttrib("Subject")) <> 0 Then
+		c.DataFile.Close
+		' Attempt to convert the recovery file into a data file
+		Dim nConvert As Long
+		nConvert = c.DataFile.Convert(ebProgressSimple)
+		If nConvert = 0 Then
+			' Settings in E-Studio are set to not remove E-Recovery file
+		Else
+			' The datafile failed to convert!
+			MsgBox "ERROR: The datafile did not convert!\nFILE: " & c.DataFile.Filename & "\n\nIt is recommended that you recover your data with the E-Recovery utility"
+			MsgBox c.DataFile.GetLastErrorMessage()
+		End If
+	End If
+ExperimentFinish:
+
+	UnInitObjects
+
+	UnInitPackages
+	UnInitDevices
+
+ExperimentAbort:
+
+	' Clean up the context
+	c.PopFrame
+	Set c = Nothing
+	Set ebContext = Nothing
+
+	DestroyDefaultPort
+
+End Sub
+
+
+[DataSection_ProcedureList(1)]
+Weight	Nested	Procedure
+1		Welcome
+1		Practice2
+1		Break
+1		Practice
+1		Goodbye\0
+
+[DataSection_PracticeList(1)]
+Weight	Nested	Procedure	CorrectResponse	picture1	Jitter	AB	CD
+1		PracticeProcedure	1	ba	3850	1	0
+1		PracticeProcedure	4	ab	1650	-1	0
+1		PracticeProcedure	4	cd	1650	0	1
+1		PracticeProcedure	1	ba	825	-1	0
+1		PracticeProcedure	4	ab	3300	1	0
+1		PracticeProcedure	4	ab	1100	1	0
+1		PracticeProcedure	4	cd	550	0	-1
+1		PracticeProcedure	1	ba	1100	1	0
+1		PracticeProcedure	4	ab	550	1	0
+1		PracticeProcedure	4	cd	1100	0	1
+1		PracticeProcedure	1	dc	825	0	-1
+1		PracticeProcedure	4	cd	550	0	1
+1		PracticeProcedure	1	dc	550	0	1
+1		PracticeProcedure	1	ba	1100	1	0
+1		PracticeProcedure	4	cd	1925	0	1
+1		PracticeProcedure	1	ba	825	1	0
+1		PracticeProcedure	1	ba	825	-1	0
+1		PracticeProcedure	1	dc	825	0	-1
+1		PracticeProcedure	4	cd	825	0	-1
+1		PracticeProcedure	4	ab	1100	-1	0
+1		PracticeProcedure	1	ba	550	1	0
+1		PracticeProcedure	4	ab	1650	1	0
+1		PracticeProcedure	1	ba	1925	1	0
+1		PracticeProcedure	1	dc	550	0	1
+1		PracticeProcedure	4	ab	550	1	0
+1		PracticeProcedure	1	ba	2200	1	0
+1		PracticeProcedure	1	dc	825	0	1
+1		PracticeProcedure	1	dc	1650	0	-1
+1		PracticeProcedure	4	ab	1100	1	0
+1		PracticeProcedure	4	ab	1650	1	0
+1		PracticeProcedure	4	cd	1100	0	1
+1		PracticeProcedure	4	cd	550	0	1
+1		PracticeProcedure	4	ab	550	-1	0
+1		PracticeProcedure	4	ab	1100	1	0
+1		PracticeProcedure	1	dc	825	0	1
+1		PracticeProcedure	4	cd	825	0	1
+1		PracticeProcedure	4	cd	1375	0	-1
+1		PracticeProcedure	4	ab	1100	1	0
+1		PracticeProcedure	1	ba	2200	1	0
+1		PracticeProcedure	4	cd	1100	0	1
+1		PracticeProcedure	4	cd	1650	0	1
+1		PracticeProcedure	4	cd	825	0	-1
+1		PracticeProcedure	4	cd	2750	0	1
+1		PracticeProcedure	1	ba	1650	1	0
+1		PracticeProcedure	1	dc	1375	0	1
+1		PracticeProcedure	1	ba	825	1	0
+1		PracticeProcedure	4	cd	2200	0	1
+1		PracticeProcedure	4	ab	825	1	0
+1		PracticeProcedure	1	dc	1100	0	1
+1		PracticeProcedure	1	ba	2200	-1	0
+1		PracticeProcedure	4	cd	1650	0	-1
+1		PracticeProcedure	1	ba	550	1	0
+1		PracticeProcedure	1	dc	1375	0	-1
+1		PracticeProcedure	4	ab	550	-1	0
+1		PracticeProcedure	4	cd	3025	0	1
+1		PracticeProcedure	1	dc	2750	0	1
+1		PracticeProcedure	4	cd	2200	0	1
+1		PracticeProcedure	1	ba	550	1	0
+1		PracticeProcedure	1	ba	1375	1	0
+1		PracticeProcedure	1	ba	550	1	0
+1		PracticeProcedure	1	dc	1925	0	1
+1		PracticeProcedure	1	ba	550	1	0
+1		PracticeProcedure	1	dc	825	0	1
+1		PracticeProcedure	1	dc	825	0	-1
+1		PracticeProcedure	4	ab	550	1	0
+1		PracticeProcedure	4	ab	3850	1	0
+1		PracticeProcedure	4	ab	825	1	0
+1		PracticeProcedure	4	ab	1650	-1	0
+1		PracticeProcedure	4	cd	1375	0	1
+1		PracticeProcedure	4	cd	825	0	-1
+1		PracticeProcedure	1	dc	825	0	1
+1		PracticeProcedure	1	dc	1100	0	1
+1		PracticeProcedure	1	dc	1100	0	1
+1		PracticeProcedure	4	cd	1650	0	1
+1		PracticeProcedure	1	dc	5225	0	-1
+1		PracticeProcedure	4	cd	825	0	1
+1		PracticeProcedure	1	dc	1375	0	1
+1		PracticeProcedure	1	ba	1375	1	0
+1		PracticeProcedure	1	ba	550	-1	0
+1		PracticeProcedure	1	ba	6600	1	0
+1		PracticeProcedure	4	cd	1650	0	-1
+1		PracticeProcedure	4	cd	1375	0	1
+1		PracticeProcedure	4	cd	550	0	1
+1		PracticeProcedure	1	ba	550	-1	0
+1		PracticeProcedure	1	dc	2750	0	1
+1		PracticeProcedure	1	dc	1650	0	1
+1		PracticeProcedure	4	ab	550	1	0
+1		PracticeProcedure	1	dc	1375	0	-1
+1		PracticeProcedure	4	ab	1650	1	0
+1		PracticeProcedure	4	ab	550	1	0
+1		PracticeProcedure	1	dc	550	0	1
+1		PracticeProcedure	4	ab	3575	1	0
+1		PracticeProcedure	1	ba	1925	1	0
+1		PracticeProcedure	1	ba	2750	1	0
+1		PracticeProcedure	1	dc	1100	0	1
+1		PracticeProcedure	1	dc	825	0	-1
+1		PracticeProcedure	1	ba	1650	1	0
+1		PracticeProcedure	4	ab	1100	1	0
+1		PracticeProcedure	4	ab	4950	1	0
+1		PracticeProcedure	4	ab	825	1	0\0
+
+[DataSection_PracticeList1(1)]
+Weight	Nested	Procedure	CorrectResponse	picture1	Jitter	AB	CD
+1		PracticeProcedure2	1	ba1	4400	1	0
+1		PracticeProcedure2	1	dc1	825	0	1
+1		PracticeProcedure2	1	ba1	550	1	0
+1		PracticeProcedure2	4	ab1	1375	-1	0
+1		PracticeProcedure2	1	dc1	825	0	1
+1		PracticeProcedure2	4	ab1	1100	-1	0
+1		PracticeProcedure2	1	dc1	550	0	-1
+1		PracticeProcedure2	4	ab1	550	1	0
+1		PracticeProcedure2	4	ab1	1100	1	0
+1		PracticeProcedure2	1	dc1	1100	0	-1
+1		PracticeProcedure2	1	ba1	550	1	0
+1		PracticeProcedure2	1	dc1	1375	0	1
+1		PracticeProcedure2	4	ab1	1925	-1	0
+1		PracticeProcedure2	4	cd1	2200	0	-1
+1		PracticeProcedure2	1	dc1	825	0	1
+1		PracticeProcedure2	4	cd1	825	0	1
+1		PracticeProcedure2	1	ba1	550	1	0
+1		PracticeProcedure2	1	ba1	1375	1	0
+1		PracticeProcedure2	4	cd1	3025	0	1
+1		PracticeProcedure2	1	dc1	1375	0	-1
+1		PracticeProcedure2	1	dc1	550	0	1
+1		PracticeProcedure2	1	ba1	1375	1	0
+1		PracticeProcedure2	4	cd1	550	0	1
+1		PracticeProcedure2	1	dc1	1100	0	-1
+1		PracticeProcedure2	4	ab1	1375	1	0
+1		PracticeProcedure2	1	ba1	1100	1	0
+1		PracticeProcedure2	4	cd1	1375	0	-1
+1		PracticeProcedure2	1	dc1	1925	0	1
+1		PracticeProcedure2	4	cd1	550	0	1
+1		PracticeProcedure2	1	ba1	1375	1	0
+1		PracticeProcedure2	4	cd1	1100	0	1
+1		PracticeProcedure2	4	ab1	1100	1	0
+1		PracticeProcedure2	1	ba1	825	-1	0
+1		PracticeProcedure2	1	ba1	550	1	0
+1		PracticeProcedure2	4	ab1	1925	1	0
+1		PracticeProcedure2	4	cd1	1375	0	1
+1		PracticeProcedure2	1	dc1	1100	0	1
+1		PracticeProcedure2	4	cd1	825	0	-1
+1		PracticeProcedure2	4	ab1	1100	1	0
+1		PracticeProcedure2	1	ba1	550	1	0
+1		PracticeProcedure2	4	ab1	825	1	0
+1		PracticeProcedure2	4	ab1	1100	1	0
+1		PracticeProcedure2	4	cd1	550	0	1
+1		PracticeProcedure2	1	ba1	2750	1	0
+1		PracticeProcedure2	4	ab1	4400	1	0
+1		PracticeProcedure2	4	cd1	2475	0	1
+1		PracticeProcedure2	1	dc1	550	0	1
+1		PracticeProcedure2	4	ab1	2475	1	0
+1		PracticeProcedure2	1	dc1	550	0	1
+1		PracticeProcedure2	4	cd1	1100	0	-1
+1		PracticeProcedure2	4	cd1	2475	0	1
+1		PracticeProcedure2	4	cd1	825	0	-1
+1		PracticeProcedure2	1	dc1	550	0	-1
+1		PracticeProcedure2	1	ba1	1375	1	0
+1		PracticeProcedure2	1	dc1	825	0	1
+1		PracticeProcedure2	1	ba1	2475	1	0
+1		PracticeProcedure2	4	ab1	1650	-1	0
+1		PracticeProcedure2	4	cd1	2200	0	1
+1		PracticeProcedure2	1	ba1	2200	-1	0
+1		PracticeProcedure2	4	cd1	550	0	-1
+1		PracticeProcedure2	4	cd1	2475	0	1
+1		PracticeProcedure2	1	dc1	550	0	1
+1		PracticeProcedure2	4	ab1	2200	1	0
+1		PracticeProcedure2	1	dc1	1375	0	1
+1		PracticeProcedure2	1	ba1	825	1	0
+1		PracticeProcedure2	1	ba1	2200	1	0
+1		PracticeProcedure2	4	ab1	2200	1	0
+1		PracticeProcedure2	4	cd1	550	0	1
+1		PracticeProcedure2	1	ba1	4400	1	0
+1		PracticeProcedure2	4	cd1	1650	0	1
+1		PracticeProcedure2	1	dc1	550	0	-1
+1		PracticeProcedure2	4	ab1	825	1	0
+1		PracticeProcedure2	4	ab1	825	1	0
+1		PracticeProcedure2	4	ab1	825	-1	0
+1		PracticeProcedure2	1	ba1	825	1	0
+1		PracticeProcedure2	1	dc1	550	0	1
+1		PracticeProcedure2	4	cd1	1650	0	-1
+1		PracticeProcedure2	1	ba1	5775	1	0
+1		PracticeProcedure2	1	dc1	550	0	1
+1		PracticeProcedure2	1	ba1	825	1	0
+1		PracticeProcedure2	1	ba1	1100	-1	0
+1		PracticeProcedure2	1	ba1	1650	1	0
+1		PracticeProcedure2	4	cd1	550	0	1
+1		PracticeProcedure2	4	ab1	1100	1	0
+1		PracticeProcedure2	4	cd1	550	0	1
+1		PracticeProcedure2	1	ba1	1100	1	0
+1		PracticeProcedure2	4	ab1	1100	1	0
+1		PracticeProcedure2	4	ab1	550	1	0
+1		PracticeProcedure2	1	dc1	3300	0	1
+1		PracticeProcedure2	4	ab1	550	1	0
+1		PracticeProcedure2	4	ab1	1100	1	0
+1		PracticeProcedure2	4	cd1	3025	0	1
+1		PracticeProcedure2	1	dc1	4675	0	-1
+1		PracticeProcedure2	1	dc1	1100	0	1
+1		PracticeProcedure2	4	cd1	4675	0	-1
+1		PracticeProcedure2	1	ba1	550	-1	0
+1		PracticeProcedure2	1	dc1	825	0	1
+1		PracticeProcedure2	1	dc1	1650	0	1
+1		PracticeProcedure2	4	cd1	2200	0	1
+1		PracticeProcedure2	4	ab1	1100	-1	0\0
